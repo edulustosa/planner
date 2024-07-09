@@ -1,0 +1,4 @@
+services:
+  planner-db:
+    image: postgres:latest
+    
