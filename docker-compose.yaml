@@ -1,4 +1,17 @@
 services:
   planner-db:
-    image: postgres:latest
-    
+    container_name: planner-db
+    image: bitnami/postgresql
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRESQL_USERNAME: ${JOURNEY_DATABASE_USER}
+      POSTGRESQL_PASSWORD: ${JOURNEY_DATABASE_PASSWORD}
+      POSTGRESQL_DATABASE: ${JOURNEY_DATABASE_NAME}
+    volumes:
+      - db:/var/lib/postgresql/data
+
+volumes:
+  db:
+    driver: local
